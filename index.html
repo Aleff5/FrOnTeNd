@@ -1,13 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
-    <link rel="icon" href="/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vite App</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+    <title>IMGEN2K</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+        body {
+            background-color: #00224D;
+            color: #E2DFD0;
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 0.5em;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            margin-bottom: 1.5em;
+        }
+
+        .image-container {
+            width: 300px;
+            height: 300px;
+            background-color: #E2DFD0;
+            margin-bottom: 1em;
+        }
+
+        .button-container {
+            text-align: center;
+        }
+
+        button {
+            background-color: #E2DFD0;
+            color: #00224D;
+            border: none;
+            padding: 0.5em 2em;
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #cccccc;
+        }
+    </style>
+</head>
+<body>
+    <h1>IMGEN2K</h1>
+    <h2>The <span id="word">best</span> picture generator</h2>
+    <div class="image-container" id="imageContainer">
+        <!-- Imagem será colocada aqui -->
+    </div>
+    <div class="button-container">
+        <button onclick="generateImage()">Gerar</button>
+    </div>
+    <script>
+        const words = ["best", "funniest", "coolest"];
+        let wordIndex = 0;
+
+        function changeWord() {
+            wordIndex = (wordIndex + 1) % words.length;
+            document.getElementById("word").textContent = words[wordIndex];
+        }
+
+        setInterval(changeWord, 1000);
+
+        function generateImage() {
+            // Lógica para gerar a imagem e colocá-la na div #imageContainer
+            alert("Função de gerar imagem ainda não implementada!");
+        }
+    </script>
+</body>
 </html>
