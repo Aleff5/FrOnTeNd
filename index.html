@@ -38,6 +38,14 @@
             height: 300px;
             background-color: #E2DFD0; /* Cor de fundo do contêiner */
             margin-bottom: 1em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            max-height: 100%;
         }
 
         /* Estilos para o contêiner dos botões */
@@ -79,6 +87,8 @@
             text-decoration: underline; /* Sublinhado ao passar o mouse sobre os links */
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="script.js" defer></script>
 </head>
 <body>
     <!-- Barra de navegação -->
@@ -100,24 +110,5 @@
         <!-- Botão de geração de imagem -->
         <button onclick="generateImage()">Gerar</button>
     </div>
-    <!-- Script JavaScript -->
-    <script>
-        const words = ["best", "funniest", "coolest"];
-        let wordIndex = 0;
-
-        // Função para alternar as palavras do subtítulo
-        function changeWord() {
-            wordIndex = (wordIndex + 1) % words.length;
-            document.getElementById("word").textContent = words[wordIndex];
-        }
-
-        // Chamada da função a cada segundo para alterar a palavra
-        setInterval(changeWord, 1000);
-
-        // Função para gerar a imagem (ainda não implementada)
-        function generateImage() {
-            alert("Função de gerar imagem ainda não implementada!");
-        }
-    </script>
 </body>
 </html>
