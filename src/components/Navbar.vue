@@ -1,61 +1,74 @@
 <template>
-    <nav class="navbar">
-      <div class="navbar-brand">
-        <a href="#" class="navbar-item">BrandName</a>
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <router-link to="/" class="navbar-item">IMGEN2K</router-link>
+    </div>
+    <div class="navbar-menu">
+      <div class="navbar-start">
+        <a href="https://github.com/Aleff5/Backend-projeto" class="navbar-item" target="_blank">About</a>
       </div>
-      <div class="navbar-menu">
-        <div class="navbar-start">
-          <a href="#" class="navbar-item">Home</a>
-          <a href="#" class="navbar-item">About</a>
-        </div>
-        <div class="navbar-end">
-          <a href="#" class="navbar-item">Login</a>
-          <a href="#" class="navbar-item">Sign Up</a>
-        </div>
+      <div class="navbar-end">
+        <router-link to="/login" class="navbar-item" v-if="!isUserRoute && !isAdminRoute">Login</router-link>
+        <router-link to="/register" class="navbar-item" v-if="!isUserRoute && !isAdminRoute">Sign Up</router-link>
+        <LogoutButton v-if="isUserRoute || isAdminRoute" />
       </div>
-    </nav>
-  </template>
-  
-  <script>
-  export default {
-    name: 'Navbar',
-  };
-  </script>
-  
-  <style scoped>
-  .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    background-color: #333;
-    color: #fff;
+    </div>
+  </nav>
+</template>
+
+<script>
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';
+import LogoutButton from './LogoutButton.vue';
+
+export default {
+  components: {
+    LogoutButton
+  },
+  setup() {
+    const route = useRoute();
+    const isUserRoute = computed(() => route.path === '/user');
+    const isAdminRoute = computed(() => route.path === '/admin');
+    return { isUserRoute, isAdminRoute };
   }
-  
-  .navbar-brand .navbar-item {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #fff;
-    text-decoration: none;
-  }
-  
-  .navbar-menu {
-    display: flex;
-    align-items: center;
-  }
-  
-  .navbar-start, .navbar-end {
-    display: flex;
-  }
-  
-  .navbar-item {
-    margin: 0 0.5rem;
-    color: #fff;
-    text-decoration: none;
-  }
-  
-  .navbar-item:hover {
-    text-decoration: underline;
-  }
-  </style>
-  
+};
+</script>
+
+<style scoped>
+.navbar {
+  width: 100%;
+  background-color: #808080; /* Mudança na cor de fundo para cinza */
+  padding: 1rem;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-brand, .navbar-start, .navbar-end {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-menu {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.navbar-start {
+  flex-grow: 1;
+}
+
+.navbar-item {
+  padding: 0 1rem;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px; /* Bordas arredondadas nos botões */
+}
+
+.navbar-item:hover {
+  background-color: hsla(0, 0%, 100%, 0.1);
+}
+</style>
+
